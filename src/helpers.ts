@@ -64,6 +64,15 @@ export function resolveCacheScope(cacheScope: string, slug: string): string {
 }
 
 /**
+ * Combine the cache arg with the scope.
+ */
+export function parseCacheArg(cache: string, cacheScope: string): string[] {
+    if (!cache || cache === 'false') return [];
+    cache += `,scope=${cacheScope}`;
+    return [cache];
+}
+
+/**
  * Parse multi-line build args into an array of `['--build-arg', 'ARG=val']` pairs.
  */
 export function parseBuildArgs(buildArgs: string): string[] {
@@ -82,6 +91,8 @@ export interface BuildxOptions {
     platform: string;
     file: string;
     image: string;
+    cacheFrom: string;
+    cacheTo: string;
     scope: string;
     provenance: string;
     sbom: string;
@@ -105,9 +116,9 @@ export function buildBuildxArgs(opts: BuildxOptions): string[] {
         '--output',
         `type=registry,name=${opts.image},push-by-digest=true,name-canonical=true`,
         '--cache-from',
-        `type=gha,scope=${opts.scope}`,
+        ...parseCacheArg(opts.cacheFrom, opts.scope),
         '--cache-to',
-        `type=gha,mode=max,scope=${opts.scope}`,
+        ...parseCacheArg(opts.cacheTo, opts.scope),
         '--metadata-file',
         opts.metadataFile,
         '--provenance',
@@ -116,7 +127,7 @@ export function buildBuildxArgs(opts: BuildxOptions): string[] {
         opts.sbom,
         ...(opts.pull === 'true' ? ['--pull'] : []),
         ...parseBuildArgs(opts.buildArgs),
-        opts.context
+        opts.context,
     ];
     return args;
 }

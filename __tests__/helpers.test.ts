@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
     buildBuildxArgs,
+    BuildxOptions,
     extractDigest,
     getArtifactName,
     normalizeImageName,
     parseBuildArgs,
+    parseCacheArg,
     platformToSlug,
     resolveCacheScope
 } from '../src/helpers';
@@ -30,6 +32,20 @@ describe('resolveCacheScope', () => {
 
     it('falls back to slug when scope is empty', () => {
         expect(resolveCacheScope('', 'linux-amd64')).toBe('linux-amd64');
+    });
+});
+
+describe('parseCacheArg', () => {
+    it('returns empty array for empty string', () => {
+        expect(parseCacheArg('', 'my-scope')).toEqual([]);
+    });
+
+    it('returns empty array when disabled', () => {
+        expect(parseCacheArg('false', 'my-scope')).toEqual([]);
+    });
+
+    it('combines cache arg with scope', () => {
+        expect(parseCacheArg('type=gha', 'my-scope')).toEqual(['type=gha,scope=my-scope']);
     });
 });
 
@@ -91,10 +107,12 @@ describe('normalizeImageName', () => {
 });
 
 describe('buildBuildxArgs', () => {
-    const baseOpts = {
+    const baseOpts: BuildxOptions = {
         platform: 'linux/amd64',
         file: './Dockerfile',
         image: 'ghcr.io/org/app',
+        cacheFrom: 'type=gha',
+        cacheTo: 'type=gha,mode=max',
         scope: 'linux-amd64',
         provenance: 'true',
         sbom: 'false',
