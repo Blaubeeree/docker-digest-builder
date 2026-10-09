@@ -31,6 +31,9 @@ async function run(): Promise<void> {
         const artifactNamePrefix = core.getInput('artifact-name-prefix');
         const retentionDays = parseInt(core.getInput('retention-days'), 10);
 
+        core.debug(cacheFrom);
+        core.debug((!cacheFrom || cacheFrom === 'false').toString());
+
         // --- Prepare platform slug ---
         const slug = platformToSlug(platform);
         const scope = resolveCacheScope(cacheScope, slug);
