@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.9.0](https://github.com/Blaubeeree/docker-digest-builder/compare/v1.8.0...v1.9.0) (2026-10-09)
+
+
+### Features
+
+* add icon ([59c9b55](https://github.com/Blaubeeree/docker-digest-builder/commit/59c9b55e301bf7377bbb272f4a43719e352c74a7))
+* add optional image normalization and strict repository validation ([dbcf6d1](https://github.com/Blaubeeree/docker-digest-builder/commit/dbcf6d1aed70d37d510adc3484b23d8fe9bdf613))
+* add pull option ([c9a04b3](https://github.com/Blaubeeree/docker-digest-builder/commit/c9a04b317e6f90294be52c2489f544d031df3ffa))
+* Bump to v1.8.0 ([dd5879d](https://github.com/Blaubeeree/docker-digest-builder/commit/dd5879d58ef754f9d1802dbc4c42babb966c06b3))
+* fix CI ([7f90e14](https://github.com/Blaubeeree/docker-digest-builder/commit/7f90e14c142f4b4b9539b37ef9a19edae0c0a85d))
+* init ([8aba717](https://github.com/Blaubeeree/docker-digest-builder/commit/8aba717077cd99ba1ba34d393b1415ed14067b65))
+* update description ([99bcdbc](https://github.com/Blaubeeree/docker-digest-builder/commit/99bcdbc3039e2a1ecc76db69b0acdd25c169eefa))
+* Update tsconfig to ESNext and add Node types ([2362bcd](https://github.com/Blaubeeree/docker-digest-builder/commit/2362bcd235f516eadb6f7500ddcf536b09ea5b7b))
+* Use registry buildx output; bump deps ([7206da9](https://github.com/Blaubeeree/docker-digest-builder/commit/7206da9a8e0df097a282954953eb68fc0c1b2066))
+* using node24 ([e5dc4c8](https://github.com/Blaubeeree/docker-digest-builder/commit/e5dc4c8c95799c235a2005d16cad5bdc728a58bf))
+
+
+### Bug Fixes
+
+* add tests ([5624e50](https://github.com/Blaubeeree/docker-digest-builder/commit/5624e507e000bdb97b1b4398a3b4bf7b47de97d8))
+* build ([e7f29ff](https://github.com/Blaubeeree/docker-digest-builder/commit/e7f29ff1aa60d5f0691d4b7e90059943f1ff0538))
+
 ## [1.8.0](https://github.com/carry0987/docker-digest-builder/compare/v1.7.0...v1.8.0) (2026-07-29)
 
 
